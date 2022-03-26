@@ -26,6 +26,8 @@ function buttonInit(){
       btnIniciar.setAttribute("disabled","disabled");
       btnFinish.removeAttribute("disabled");
       btnPause.removeAttribute("disabled");
+    }else{
+      notFoundTextTask()
     }
   })
 }
