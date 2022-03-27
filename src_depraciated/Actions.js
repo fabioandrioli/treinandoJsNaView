@@ -3,6 +3,33 @@ const btnIniciar = document.getElementById("init")
 const btnPause = document.getElementById("pause")
 const btnFinish = document.getElementById("finish");
 
+const tasks = [
+  {
+    id: 1,
+    title: "Tarefa teste",
+    tempo: "00:27:00",
+    date: "27/03/2022"
+  },
+  {
+    id: 2,
+    title: "Tarefa teste",
+    tempo: "00:25:00",
+    date: "27/03/2022"
+  },
+  {
+    id: 3,
+    title: "Tarefa teste",
+    tempo: "00:25:00",
+    date: "27/03/2022"
+  },
+  {
+    id: 4,
+    title: "Tarefa teste",
+    tempo: "00:25:00",
+    date: "27/03/2022"
+  },
+]
+
 function resetStates(){
   Timer.timerStop();
   Timer.time = 0;
@@ -56,10 +83,12 @@ function addTaskInTable(){
   const seconds = Timer.formatTime(Timer.timeToSeconds(Timer.time));
   const hours = Timer.formatTime(Timer.timeToHours(Timer.time));
   tr.innerHTML = `
-  <th scope="row">2</th>
-  <td>${document.querySelector("input[name='task']").value}</td>
-  <td>${hours}:${minutes}:${seconds}</td>
-  <td>26/03/2022</td>`;
-  table.appendChild(tr)
+    <th scope="row">2</th>
+    <td>${document.querySelector("input[name='task']").value}</td>
+    <td>${hours}:${minutes}:${seconds}</td>
+    <td>26/03/2022</td>
+    <td><button id="delete" class="btn btn-danger">deletar</button></td>
+  `;
+  table.insertBefore(tr,table.firstChild)
 }
 

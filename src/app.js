@@ -1,5 +1,0 @@
-buttonInit()
-
-buttonPause()
-
-buttonFinish()
