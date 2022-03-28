@@ -1,0 +1,46 @@
+.box-warning{
+  position: absolute;
+  right:-300px;
+  margin-top: 9rem;
+  width:300px;
+  background-color:rgb(143, 34, 34);
+  color:white;
+  padding:2.0rem 2.0rem;
+  font-size:1.5rem;
+  font-weight:bold;
+  border-radius: 0.8rem 0 0 0.8rem;
+  -webkit-border-radius: 0.8rem 0 0 0.8rem;
+  -moz-border-radius: 0.8rem 0 0 0.8rem;
+  -ms-border-radius: 0.8rem 0 0 0.8rem;
+  -o-border-radius: 0.8rem 0 0 0.8rem;
+}
+
+.box-warning-show{
+  right:0px;
+  animation:slidein 1s;
+  -webkit-animation:slidein 1s;
+}
+
+.box-warning-hidden{
+  right:-300px;
+  animation:slideout 1s;
+  -webkit-animation:slideout 1s;
+}
+
+@keyframes slidein {
+  from {
+    right: -300px;
+  }
+  to {
+    right: 0px;
+  }
+}
+
+@keyframes slideout {
+  from {
+    right: 0px;
+  }
+  to {
+    right: -300px;
+  }
+}

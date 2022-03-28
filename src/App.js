@@ -3,6 +3,7 @@ const App = {
   btnStart: document.getElementById('start'),
   btnPause: document.getElementById('pause'),
   btnFinish: document.getElementById('finish'),
+  inputTextTask: document.querySelector('input[name="task"]'),
   timer:0,
   tasks:[
     {
@@ -28,9 +29,13 @@ const App = {
     App.btnFinish.addEventListener('click',App.buttons.finishTimer);
   },
 
+  validateInitTask(){
+    return App.inputTextTask.value === "" ? false : true;
+  },
+
   currentTimer(){
     App.timer += 1;
-    App.view.show(App.calculateAndTransformTimeForHoursMinutesSeconds());
+    App.view.showTimer(App.calculateAndTransformTimeForHoursMinutesSeconds());
   },
 
   calculateAndTransformTimeForHoursMinutesSeconds(){
@@ -49,19 +54,36 @@ const App = {
   },
 
   view:{
-    show(time){
+    showTimer(time){
       let cronometro = document.getElementById('timer');
       cronometro.innerHTML = `
         ${time.hours}:${time.minutes}:${time.seconds}
       `
     },
+
+    showWarningInputTask(){
+      let body = document.getElementsByTagName('body')[0]
+      warning = document.createElement('div');
+      warning.innerHTML = ` <div id="warning" class="box-warning box-warning-show">Por favor, insira uma tarefa!</div>`;
+      body.insertBefore(warning, body.firstChild);
+      setTimeout(() => {
+        warning = document.querySelector('.box-warning-show');
+        warning.classList.add('box-warning-hidden');
+        document.getElementById('warning').remove();
+      }, 2000);
+    
+    }
   },
  
   buttons:{
     initTimer(){
-      interval = setInterval(App.currentTimer,1000)
-      App.buttons.activityButton([App.btnPause,App.btnFinish]);
-      App.buttons.disabledButton([App.btnStart])
+      if(App.validateInitTask()){
+        interval = setInterval(App.currentTimer,1000)
+        App.buttons.activityButton([App.btnPause,App.btnFinish]);
+        App.buttons.disabledButton([App.btnStart])
+      }else{
+        App.view.showWarningInputTask();
+      }
     },
 
     pauseTimer(){
@@ -75,7 +97,7 @@ const App = {
       App.buttons.activityButton([App.btnStart]);
       App.buttons.disabledButton([App.btnPause,App.btnFinish]);
       App.resetTimer();
-      App.view.show(App.calculateAndTransformTimeForHoursMinutesSeconds());
+      App.view.showTimer(App.calculateAndTransformTimeForHoursMinutesSeconds());
     },
 
     disabledButton(buttons){
@@ -85,7 +107,18 @@ const App = {
     activityButton(buttons){
       buttons.forEach(button => button.removeAttribute("disabled"));
     },
-  }
+  },
+
+  song:{
+    play(){
+      music = new Audio('../songs/start.wav');
+      music.play();
+      music.loop =false;
+      setTimeout(() => {
+        music.pause();
+      },1000)
+    },   
+  },
 }
 
 App.init();
