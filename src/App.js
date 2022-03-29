@@ -144,6 +144,7 @@ const App = {
   buttons:{
     initTimer(){
       if(App.validateInitTask()){
+        App.song.play();
         interval = setInterval(App.currentTimer,1000)
         App.buttons.activityButton([App.btnPause,App.btnFinish]);
         App.buttons.disabledButton([App.btnStart])
