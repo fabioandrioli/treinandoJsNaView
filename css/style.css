@@ -17,14 +17,14 @@
 
 .box-warning-show{
   right:0px;
-  animation:slidein 1s;
-  -webkit-animation:slidein 1s;
+  animation:slidein 0.3s;
+  -webkit-animation:slidein 0.3s;
 }
 
 .box-warning-hidden{
   right:-300px;
-  animation:slideout 1s;
-  -webkit-animation:slideout 1s;
+  animation:slideout 0.5s;
+  -webkit-animation:slideout 0.5s;
 }
 
 @keyframes slidein {
