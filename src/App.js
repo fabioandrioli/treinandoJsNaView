@@ -37,7 +37,7 @@ const App = {
       date:"25/03/2022",
     }
   ],
-
+  
   newTask(){
     timer = App.calculateAndTransformTimeForHoursMinutesSeconds();
     let task = {
@@ -78,11 +78,14 @@ const App = {
   },
 
   calculateMinutesAndHours(valor){
-   return Math.floor(this.timer / valor) < 60 ? App.formatTime(Math.floor(this.timer / valor )) : App.formatTime(Math.floor(this.timer / valor) % 10)
+    if(valor == 60)
+      return App.formatTime(Math.floor((this.timer / valor) % 60));
+    else
+      return App.formatTime(Math.floor((this.timer / valor) % 24));
   },
 
   resetTimer(){
-    App.timer = 0;
+    App.timer = 0; 
   },
 
   view:{
